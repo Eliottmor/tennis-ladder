@@ -1,32 +1,36 @@
-const { players } = require('./data.js')
+const { prisma } = require("./data.js");
 
-const resolvers = {
-  Player: {
-    id: (parent, args, context, info) => parent.id,
-    email: (parent) => parent.email,
-    fullName: (parent) => parent.fullName
+const Player = {
+  id: (parent, args, context, info) => parent.id,
+  email: (parent) => parent.email,
+  fullName: (parent) => parent.fullName
+}
+
+const Query = {
+  players: (parent, args) => {
+    return players
   },
+  player: (parent, { id }) => {
+    return prisma.player.findFirst({
+      where: { id: Number(id)}
+    })
+  }
+}
 
-  Query: {
-    players: (parent, args) => {
-      return players
-    },
-    player: (parent, { id }) => {
-      return players.find(player => Number(id) === player.id)
-    }
-  },
-
+const Mutation = {
   Mutation: {
-    enrollPlayer: (parent, { email, fullName }) => {
-      players.push({
-        id: players.length + 1,
-        email: email,
-        fullName: fullName
+    createPlayer: (parent, { email, fullName }) => {
+      return prisma.player.create({
+        data: {
+          email,
+          fullName
+        }
       })
-      return players[players.length - 1]
     }
   }
 }
+
+const resolvers = { Player, Query, Mutation }
 
 module.exports = {
   resolvers
