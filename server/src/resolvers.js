@@ -8,7 +8,7 @@ const Player = {
 
 const Query = {
   players: (parent, args) => {
-    return players
+    return prisma.player.findMany({})
   },
   player: (parent, { id }) => {
     return prisma.player.findFirst({
@@ -18,15 +18,13 @@ const Query = {
 }
 
 const Mutation = {
-  Mutation: {
-    createPlayer: (parent, { email, fullName }) => {
-      return prisma.player.create({
-        data: {
-          email,
-          fullName
-        }
-      })
-    }
+  createPlayer: (parent, { email, fullName }) => {
+    return prisma.player.create({
+      data: {
+        email,
+        fullName
+      }
+    })
   }
 }
 
