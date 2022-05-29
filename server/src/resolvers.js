@@ -1,4 +1,4 @@
-const { prisma } = require("./data.js");
+const { prisma } = require('./data.js');
 
 const Player = {
   id: (parent, args, context, info) => parent.id,
