@@ -13,7 +13,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    enrollPlayer(email: String!, fullName: String!): Player
+    createPlayer(email: String!, fullName: String!): Player
   }
 `
 

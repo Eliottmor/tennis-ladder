@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":  "node src/index.js"
+    "start": "node src/index.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^3.14.0",
     "apollo-server": "^3.7.0",
     "graphql": "^16.5.0"
+  },
+  "devDependencies": {
+    "prisma": "^3.14.0"
   }
 }
