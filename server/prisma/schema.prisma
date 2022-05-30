@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Player {
-  id       Int    @default(autoincrement()) @id
-  email    String
+  id       Int    @id @default(autoincrement())
+  email    String @unique
   fullName String
 }

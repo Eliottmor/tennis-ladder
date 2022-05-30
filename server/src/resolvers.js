@@ -1,13 +1,13 @@
 const { prisma } = require('./data.js');
 
 const Player = {
-  id: (parent, args, context, info) => parent.id,
+  id: (parent) => parent.id,
   email: (parent) => parent.email,
   fullName: (parent) => parent.fullName
 }
 
 const Query = {
-  players: (parent, args) => {
+  players: (parent) => {
     return prisma.player.findMany({})
   },
   player: (parent, { id }) => {
