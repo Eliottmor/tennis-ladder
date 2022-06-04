@@ -19,3 +19,8 @@ to run new migrations:
 ```
 npx prisma migrate dev
 ```
+
+open prisma studio: 
+```
+npx prisma studio
+```

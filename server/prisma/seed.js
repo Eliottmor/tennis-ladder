@@ -8,7 +8,9 @@ async function main() {
     update: {},
     create: {
       email: 'eliott@tennisladder.com',
-      fullName: 'Eliott',
+      firstName: 'Eliott',
+      lastName: 'Tennis',
+      password: 'test'
     }
   })
 }
