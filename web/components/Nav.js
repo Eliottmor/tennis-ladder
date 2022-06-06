@@ -1,10 +1,10 @@
-import { styled } from '@stitches/react'
+import { css } from '@stitches/react'
 
 const Nav = () => {
-  return <Title>TENNIS LADDER</Title>
+  return <h3 className={titleCss()}>TENNIS LADDER</h3>
 }
 
-const Title = styled('h3', {
+const titleCss = css({
   marginLeft: '3rem'
 })
 
