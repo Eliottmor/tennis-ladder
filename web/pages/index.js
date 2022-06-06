@@ -4,8 +4,6 @@ import styles from '../styles/Home.module.css'
 import GetAllPlayers from './gql/GetAllPlayers.gql'
 
 export default function Home({ players }) {
-  console.log(players)
-  console.log(GetAllPlayers)
   return (
     <div className={styles.container}>
       <Head>
