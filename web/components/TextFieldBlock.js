@@ -1,6 +1,7 @@
 import TextField from './TextField'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { styled } from '@stitches/react'
+import useGetClassName from '../utils/useGetClassName'
 
 const StyledLabel = styled(LabelPrimitive.Root, {
   display: 'block',
@@ -14,12 +15,20 @@ const StyledLabel = styled(LabelPrimitive.Root, {
   }
 })
 
-const TextFieldBlock = ({ label }) => {
+const TextFieldBlock = ({ label, className }) => {
+  const makeClassName = useGetClassName('TextFieldBlock')
+
   return (
-    <>
-      <StyledLabel htmlFor={label}>{label}</StyledLabel>
-      <TextField type='text' id={label} css={{ width: '100%' }} />
-    </>
+    <div className={className}>
+      <StyledLabel className={makeClassName('label')} htmlFor={label}>
+        {label}
+      </StyledLabel>
+      <TextField
+        className={makeClassName('text-field')}
+        type='text'
+        id={label}
+      />
+    </div>
   )
 }
 
