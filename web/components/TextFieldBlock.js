@@ -2,6 +2,7 @@ import TextField from './TextField'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { styled } from '@stitches/react'
 import useGetClassName from '../utils/useGetClassName'
+import { toCamelCase } from '../utils/textHelper'
 
 const StyledLabel = styled(LabelPrimitive.Root, {
   display: 'block',
@@ -15,8 +16,9 @@ const StyledLabel = styled(LabelPrimitive.Root, {
   }
 })
 
-const TextFieldBlock = ({ label, className }) => {
+const TextFieldBlock = ({ label, className, register, isPassword }) => {
   const makeClassName = useGetClassName('TextFieldBlock')
+  const password = isPassword && { type: 'password' }
 
   return (
     <div className={className}>
@@ -25,8 +27,8 @@ const TextFieldBlock = ({ label, className }) => {
       </StyledLabel>
       <TextField
         className={makeClassName('text-field')}
-        type='text'
-        id={label}
+        {...password}
+        {...register(toCamelCase(label))}
       />
     </div>
   )

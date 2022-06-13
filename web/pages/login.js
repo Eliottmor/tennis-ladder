@@ -3,23 +3,29 @@ import Button from '../components/Button'
 import TextFieldBlock from '../components/TextFieldBlock'
 import { css } from '@stitches/react'
 import Separator from '../components/Separator'
+import { useForm } from 'react-hook-form'
 
 const Login = () => {
+  const { register, handleSubmit } = useForm()
+  const handleLogin = (data) => {
+    console.log(data)
+  }
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Sign In</h1>
-      <form>
-        <TextFieldBlock className={textFieldCss()} label='Email Address' />
-        <TextFieldBlock className={textFieldCss()} label='Password' />
-        <Button
-          name='login'
-          css={{ width: '100%' }}
-          type='submit'
-          onClick={(e) => {
-            e.preventDefault()
-            console.log(e)
-          }}
-        >
+      <form onSubmit={handleSubmit(handleLogin)}>
+        <TextFieldBlock
+          className={textFieldCss()}
+          label='Email Address'
+          register={register}
+        />
+        <TextFieldBlock
+          className={textFieldCss()}
+          label='Password'
+          register={register}
+          isPassword
+        />
+        <Button name='login' css={{ width: '100%' }} type='submit'>
           Sign in
         </Button>
         <Separator>OR</Separator>
