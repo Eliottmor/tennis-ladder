@@ -8,14 +8,12 @@ export default function Home({ players }) {
     <div className={styles.container}>
       <Head>
         <title>Tennis Ladder</title>
-        <meta name="description" content="tennis ladder" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='tennis ladder' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to the Tennis Ladder
-        </h1>
+        <h1 className={styles.title}>Welcome to the Tennis Ladder</h1>
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -23,18 +21,18 @@ export default function Home({ players }) {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a href='https://nextjs.org/docs' className={styles.card}>
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a href='https://nextjs.org/learn' className={styles.card}>
             <h2>Learn &rarr;</h2>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
+            href='https://github.com/vercel/next.js/tree/canary/examples'
             className={styles.card}
           >
             <h2>Examples &rarr;</h2>
@@ -42,7 +40,7 @@ export default function Home({ players }) {
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
             className={styles.card}
           >
             <h2>Deploy &rarr;</h2>
@@ -53,15 +51,13 @@ export default function Home({ players }) {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-
-      </footer>
+      <footer className={styles.footer}></footer>
     </div>
   )
 }
 
 export async function getServerSideProps() {
-  const { data } = await client.query({query: GetAllPlayers})
+  const { data } = await client.query({ query: GetAllPlayers })
   return {
     props: {
       players: data.players

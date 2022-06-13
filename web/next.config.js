@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: true
 }
 
 module.exports = nextConfig
@@ -11,8 +11,8 @@ module.exports = {
       {
         source: '/',
         destination: '/login',
-        permanent: true,
-      },
+        permanent: true
+      }
     ]
   },
   webpack: (config) => {
@@ -20,11 +20,11 @@ module.exports = {
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
       use: [
-          {
-            loader: 'graphql-tag/loader'
-          }
+        {
+          loader: 'graphql-tag/loader'
+        }
       ]
-   })
+    })
     return config
   }
 }

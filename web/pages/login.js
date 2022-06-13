@@ -4,11 +4,20 @@ import TextFieldBlock from '../components/TextFieldBlock'
 import { css } from '@stitches/react'
 import Separator from '../components/Separator'
 import { useForm } from 'react-hook-form'
+import login from './gql/Login.gql'
+import { useMutation } from '@apollo/client'
 
 const Login = () => {
   const { register, handleSubmit } = useForm()
-  const handleLogin = (data) => {
-    console.log(data)
+  const [loginMutation, { error }] = useMutation(login)
+  console.log(error)
+  const handleLogin = ({ emailAddress, password }) => {
+    loginMutation({
+      variables: {
+        email: emailAddress,
+        password
+      }
+    })
   }
   return (
     <div className={styles.container}>
