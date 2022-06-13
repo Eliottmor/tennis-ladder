@@ -1,4 +1,4 @@
-const { prisma } = require('../data');
+const { prisma } = require('../data')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET } = require('../utils')
@@ -12,10 +12,10 @@ const signupPlayer = async (parent, args) => {
     }
   })
 
-  const token = jwt.sign({ playerId : player.id, }, APP_SECRET)
+  const token = jwt.sign({ playerId: player.id }, APP_SECRET)
 
   return {
-    token, 
+    token,
     player
   }
 }
@@ -27,7 +27,7 @@ const login = async (parent, args) => {
     }
   })
   if (!player) {
-    throw new Error ('No player found')
+    throw new Error('No player found')
   }
 
   const valid = await bcrypt.compare(args.password, player.password)
@@ -38,7 +38,7 @@ const login = async (parent, args) => {
   const token = jwt.sign({ playerId: player.id }, APP_SECRET)
 
   return {
-    token, 
+    token,
     player
   }
 }
