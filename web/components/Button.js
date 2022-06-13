@@ -21,7 +21,23 @@ const Button = styled('button', {
   lineHeight: '14px',
   textTransform: 'uppercase',
 
-  '&:hover': { backgroundColor: '$actionHighlight' }
+  '&:hover': { backgroundColor: '$actionHighlight' },
+
+  variants: {
+    outlined: {
+      true: {
+        backgroundColor: 'transparent',
+        border: '3px solid black',
+        color: 'black',
+        transition: 'background-color .33s, color .33s',
+        '&:hover': {
+          backgroundColor: 'black',
+          color: 'white',
+          border: '3px solid black'
+        }
+      }
+    }
+  }
 })
 
 export default Button

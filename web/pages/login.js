@@ -2,6 +2,7 @@ import styles from '../styles/Login.module.css'
 import Button from '../components/Button'
 import TextFieldBlock from '../components/TextFieldBlock'
 import { css } from '@stitches/react'
+import Separator from '../components/Separator'
 
 const Login = () => {
   return (
@@ -20,6 +21,10 @@ const Login = () => {
           }}
         >
           Sign in
+        </Button>
+        <Separator>OR</Separator>
+        <Button outlined css={{ width: '100%' }}>
+          Create Account
         </Button>
       </form>
     </div>
