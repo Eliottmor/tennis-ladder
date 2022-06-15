@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import login from './gql/Login.gql'
 import { useMutation } from '@apollo/client'
 import { usePlayerContext } from '../playerContext'
+import Link from 'next/link'
 
 const Login = () => {
   const router = useRouter()
@@ -56,9 +57,11 @@ const Login = () => {
           Sign in
         </Button>
         <Separator>OR</Separator>
-        <Button outlined css={{ width: '100%' }}>
-          Create Account
-        </Button>
+        <Link href={'/createPlayer'}>
+          <Button outlined css={{ width: '100%' }}>
+            Create Account
+          </Button>
+        </Link>
       </form>
     </div>
   )
