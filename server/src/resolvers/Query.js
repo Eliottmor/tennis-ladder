@@ -1,4 +1,4 @@
-const { prisma } = require('../data');
+const { prisma } = require('../data')
 
 const players = (parent) => {
   return prisma.player.findMany({})
@@ -6,7 +6,7 @@ const players = (parent) => {
 
 const player = (parent, { id }) => {
   return prisma.player.findFirst({
-    where: { id: Number(id)}
+    where: { id: Number(id) }
   })
 }
 
