@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import styles from '../styles/Login.module.css'
 import Button from '../components/Button'
 import TextFieldBlock from '../components/TextFieldBlock'
@@ -6,11 +7,27 @@ import Separator from '../components/Separator'
 import { useForm } from 'react-hook-form'
 import login from './gql/Login.gql'
 import { useMutation } from '@apollo/client'
+import { usePlayerContext } from '../playerContext'
 
 const Login = () => {
+  const router = useRouter()
   const { register, handleSubmit } = useForm()
-  const [loginMutation, { error }] = useMutation(login)
-  console.log(error)
+  const { signIn } = usePlayerContext()
+
+  const onLoginCompleted = (data) => {
+    const { login } = data
+    if (login?.player) {
+      console.log('logged in')
+      const { player, token } = login
+      signIn(player, token)
+      router.push('/dashboard')
+    }
+  }
+
+  const [loginMutation, { error }] = useMutation(login, {
+    onCompleted: onLoginCompleted
+  })
+
   const handleLogin = ({ emailAddress, password }) => {
     loginMutation({
       variables: {
@@ -19,6 +36,7 @@ const Login = () => {
       }
     })
   }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Sign In</h1>
