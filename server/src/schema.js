@@ -13,6 +13,17 @@ const typeDefs = gql`
     fullName: String!
   }
 
+  """
+  A tennis ladder that a player can sign up to join.
+  """
+  type Ladder {
+    id: ID!
+    name: String!
+    startDate: String!
+    "Date the ladder ends"
+    endDate: String!
+  }
+
   type AuthPayload {
     token: String
     player: Player
@@ -21,6 +32,7 @@ const typeDefs = gql`
   type Query {
     players: [Player!]!
     player(id: ID!): Player
+    ladders: [Ladder!]!
   }
 
   type Mutation {

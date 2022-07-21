@@ -8,9 +8,27 @@ datasource db {
 }
 
 model Player {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+  id        Int             @id @default(autoincrement())
+  email     String          @unique
   firstName String
   lastName  String
   password  String
+  ladders   LadderPlayers[]
+}
+
+model Ladder {
+  id        Int             @id @default(autoincrement())
+  name      String          @unique
+  startDate DateTime
+  endDate   DateTime
+  players   LadderPlayers[]
+}
+
+model LadderPlayers {
+  player   Player @relation(fields: [playerId], references: [id])
+  playerId Int
+  ladder   Ladder @relation(fields: [ladderId], references: [id])
+  ladderId Int
+
+  @@id([playerId, ladderId])
 }
