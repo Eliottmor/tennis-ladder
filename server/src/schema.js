@@ -13,6 +13,7 @@ const typeDefs = gql`
     lastName: String!
     "Combination of first and last name"
     fullName: String!
+    ladders: [Ladder]
   }
 
   """
@@ -24,11 +25,19 @@ const typeDefs = gql`
     startDate: Date!
     "Date the ladder ends"
     endDate: Date!
+    players: [Player]
   }
 
   type AuthPayload {
     token: String
     player: Player
+  }
+
+  type LadderPlayers {
+    playerId: ID!
+    ladderId: ID!
+    player: Player!
+    ladder: Ladder!
   }
 
   type Query {
@@ -48,6 +57,7 @@ const typeDefs = gql`
     "Login the tennis player"
     login(email: String!, password: String!): AuthPayload
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
+    addPlayerToLadder(playerId: ID!, ladderId: ID!): LadderPlayers!
   }
 `
 

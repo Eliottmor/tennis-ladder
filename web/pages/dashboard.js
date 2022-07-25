@@ -14,7 +14,6 @@ export default Dashboard
 
 export async function getServerSideProps() {
   const { data } = await client.query({ query: GetAllLadders })
-  console.log(data)
   return {
     props: {
       ladders: data.ladders
