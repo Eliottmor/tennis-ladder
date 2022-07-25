@@ -62,12 +62,8 @@ const createLadder = async (parent, { name, startDate, endDate }) => {
 const addPlayerToLadder = async (parent, { playerId, ladderId }) => {
   const ladderPlayer = await prisma.ladderPlayers.create({
     data: {
-      player: {
-        connect: { id: Number(playerId) }
-      },
-      ladder: {
-        connect: { id: Number(ladderId) }
-      }
+      playerId: Number(playerId),
+      ladderId: Number(ladderId)
     },
     include: {
       player: true,
@@ -75,7 +71,6 @@ const addPlayerToLadder = async (parent, { playerId, ladderId }) => {
     }
   })
 
-  console.log(ladderPlayer)
   return ladderPlayer
 }
 

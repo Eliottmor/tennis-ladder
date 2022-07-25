@@ -4,10 +4,15 @@ const id = (parent) => parent.id
 const email = (parent) => parent.email
 const fullName = (parent) => `${parent.firstName} ${parent.lastName}`
 const ladders = (parent) => {
-  return prisma.player.findUnique({
-    where: { id: parent?.id }
-  }).ladders()
+  return prisma.ladder.findMany({
+    where: {
+      players: {
+        some: { playerId: parent?.id }
+      }
+    }
+  })
 }
+
 
 module.exports = {
   id, 
