@@ -8,6 +8,7 @@ const Query = require('./resolvers/Query')
 const Player = require('./resolvers/Player')
 const Mutation = require('./resolvers/Mutation')
 const Ladder = require('./resolvers/Ladder')
+const Date = require('./resolvers/custom-scalars/date')
 
 const port = process.env.PORT || 4000
 
@@ -15,7 +16,8 @@ const resolvers = {
   Query,
   Mutation,
   Player,
-  Ladder
+  Ladder,
+  Date
 }
 
 const server = new ApolloServer({

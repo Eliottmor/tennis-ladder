@@ -13,6 +13,7 @@ model Player {
   firstName String
   lastName  String
   password  String
+  createdAt DateTime        @default(now())
   ladders   LadderPlayers[]
 }
 
@@ -21,14 +22,16 @@ model Ladder {
   name      String          @unique
   startDate DateTime
   endDate   DateTime
+  createdAt DateTime        @default(now())
   players   LadderPlayers[]
 }
 
 model LadderPlayers {
-  player   Player @relation(fields: [playerId], references: [id])
-  playerId Int
-  ladder   Ladder @relation(fields: [ladderId], references: [id])
-  ladderId Int
+  player    Player   @relation(fields: [playerId], references: [id])
+  playerId  Int
+  ladder    Ladder   @relation(fields: [ladderId], references: [id])
+  ladderId  Int
+  createdAt DateTime @default(now())
 
   @@id([playerId, ladderId])
 }

@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import client from '../apollo-client'
 import styles from '../styles/Home.module.css'
-import GetAllPlayers from './gql/GetAllPlayers.gql'
 
 export default function Home({ players }) {
   return (
@@ -54,13 +52,4 @@ export default function Home({ players }) {
       <footer className={styles.footer}></footer>
     </div>
   )
-}
-
-export async function getServerSideProps() {
-  const { data } = await client.query({ query: GetAllPlayers })
-  return {
-    props: {
-      players: data.players
-    }
-  }
 }

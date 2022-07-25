@@ -1,8 +1,11 @@
 const { PrismaClient } = require('@prisma/client')
+const bcrypt = require('bcryptjs')
 
 const prisma = new PrismaClient()
 
 async function main() {
+  const password = await bcrypt.hash('test', 10)
+  
   const eliott = await prisma.player.upsert({
     where: { email: 'eliott@tennisladder.com' },
     update: {},
@@ -10,7 +13,7 @@ async function main() {
       email: 'eliott@tennisladder.com',
       firstName: 'Eliott',
       lastName: 'Tennis',
-      password: 'test'
+      password: password
     }
   })
 
