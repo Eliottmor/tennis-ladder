@@ -10,7 +10,12 @@ const player = (parent, { id }) => {
   })
 }
 
+const ladders = (parent) => {
+  return prisma.ladder.findMany({})
+}
+
 module.exports = {
   players,
-  player
+  player,
+  ladders
 }

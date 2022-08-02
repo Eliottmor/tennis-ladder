@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server')
 
 const typeDefs = gql`
+  scalar Date
+
   """
   A type that describes the tennis player.
   """
@@ -11,6 +13,19 @@ const typeDefs = gql`
     lastName: String!
     "Combination of first and last name"
     fullName: String!
+    ladders: [Ladder]
+  }
+
+  """
+  A tennis ladder that a player can sign up to join.
+  """
+  type Ladder {
+    id: ID!
+    name: String!
+    startDate: Date!
+    "Date the ladder ends"
+    endDate: Date!
+    players: [Player]
   }
 
   type AuthPayload {
@@ -18,9 +33,17 @@ const typeDefs = gql`
     player: Player
   }
 
+  type LadderPlayers {
+    playerId: ID!
+    ladderId: ID!
+    player: Player!
+    ladder: Ladder!
+  }
+
   type Query {
     players: [Player!]!
     player(id: ID!): Player
+    ladders: [Ladder!]!
   }
 
   type Mutation {
@@ -33,6 +56,8 @@ const typeDefs = gql`
     ): AuthPayload
     "Login the tennis player"
     login(email: String!, password: String!): AuthPayload
+    createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
+    addPlayerToLadder(playerId: ID!, ladderId: ID!): LadderPlayers!
   }
 `
 
