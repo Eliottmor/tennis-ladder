@@ -4,9 +4,9 @@ const players = (parent) => {
   return prisma.player.findMany({})
 }
 
-const player = (parent, { id }) => {
-  return prisma.player.findFirst({
-    where: { id: Number(id) }
+const currentPlayer = (_parent, _args, context) => {
+  return prisma.player.findUnique({
+    where: { id: Number(context?.playerId) }
   })
 }
 
@@ -16,6 +16,6 @@ const ladders = (parent) => {
 
 module.exports = {
   players,
-  player,
+  currentPlayer,
   ladders
 }

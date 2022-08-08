@@ -42,7 +42,7 @@ const typeDefs = gql`
 
   type Query {
     players: [Player!]!
-    player(id: ID!): Player
+    currentPlayer: Player
     ladders: [Ladder!]!
   }
 
