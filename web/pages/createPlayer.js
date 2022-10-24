@@ -1,7 +1,7 @@
 import { css } from '@stitches/react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import Button from '../components/Button'
+import Button from '../components/shared/Button'
 import Separator from '../components/Separator'
 import TextFieldBlock from '../components/TextFieldBlock'
 

@@ -1,0 +1,9 @@
+query GetCurrentUserDashboard {
+  currentPlayer {
+    id
+    ladders {
+      id
+      name
+    }
+  }
+}

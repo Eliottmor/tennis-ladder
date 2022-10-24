@@ -1,22 +1,25 @@
-import { useRouter } from 'next/router'
-import client from '../apollo-client'
-import GetAllLadders from './gql/GetAllLadders.gql'
+import { useQuery } from '@apollo/client'
+import LadderTile from '../components/LadderTile'
+import Tile from '../components/shared/Tile'
+import GetCurrentUserDashboard from './gql/GetCurrentUserDashboard.gql'
 
-const Dashboard = ({ ladders }) => {
-  function ladderTiles(ladder) {
-    return <div>{ladder.name}</div>
+const Dashboard = () => {
+  const { data, loading } = useQuery(GetCurrentUserDashboard)
+  const currentPlayer = data?.currentPlayer
+  const ladders = currentPlayer?.ladders
+
+  if (loading) return null
+
+  function ladderTiles({ id, name }) {
+    return <LadderTile key={id} name={name} />
   }
 
-  return <>{ladders?.map(ladderTiles)}</>
+  return (
+    <>
+      {ladders?.map(ladderTiles)}
+      <Tile>hello</Tile>
+    </>
+  )
 }
 
 export default Dashboard
-
-export async function getServerSideProps() {
-  const { data } = await client.query({ query: GetAllLadders })
-  return {
-    props: {
-      ladders: data.ladders
-    }
-  }
-}

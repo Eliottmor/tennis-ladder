@@ -1,8 +1,8 @@
 import TextField from './TextField'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { styled } from '@stitches/react'
-import useGetClassName from '../utils/useGetClassName'
-import { toCamelCase } from '../utils/textHelper'
+import useGetClassName from '../../utils/useGetClassName'
+import { toCamelCase } from '../../utils/textHelper'
 
 const StyledLabel = styled(LabelPrimitive.Root, {
   display: 'block',
