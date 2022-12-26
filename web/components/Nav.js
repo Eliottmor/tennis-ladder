@@ -1,11 +1,5 @@
-import { css } from '@stitches/react'
-
 const Nav = () => {
-  return <h3 className={titleCss()}>TENNIS LADDER</h3>
+  return <h3 className='ml-12'>TENNIS LADDER</h3>
 }
-
-const titleCss = css({
-  marginLeft: '3rem'
-})
 
 export default Nav
