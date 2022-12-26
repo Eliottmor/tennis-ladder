@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  useCallback,
-  useMemo,
-  useEffect
-} from 'react'
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { createContext, useState, useContext, useCallback, useMemo, useEffect } from 'react'
 import { AUTH } from './constants/constants'
 
 const PlayerContext = createContext({
@@ -14,6 +8,7 @@ const PlayerContext = createContext({
   player: null
 })
 
+// eslint-disable-next-line react/prop-types
 const PlayerContextProvider = ({ children }) => {
   const [player, setPlayer] = useState()
 
@@ -49,11 +44,7 @@ const PlayerContextProvider = ({ children }) => {
     [signIn, signOut, player]
   )
 
-  return (
-    <PlayerContext.Provider value={contextValue}>
-      {children}
-    </PlayerContext.Provider>
-  )
+  return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>
 }
 
 export const usePlayerContext = () => {

@@ -10,7 +10,7 @@ const getPlayerId = (req, authToken) => {
     const authHeader = req.headers.authorization
     if (authHeader) {
       const token = authHeader.replace('Bearer ', '')
-      if(!token) {
+      if (!token) {
         throw new Error('No token found')
       }
       const { playerId } = getTokenPayload(token)

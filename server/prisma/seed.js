@@ -1,34 +1,30 @@
 const { PrismaClient } = require('@prisma/client')
 const bcrypt = require('bcryptjs')
+const players = require('./playersSeed')
+const ladders = require('./laddersSeed')
+const playersInLadder = require('./playersInLadderSeed')
 
 const prisma = new PrismaClient()
 
 async function main() {
   const password = await bcrypt.hash('test', 10)
-  
-  const eliott = await prisma.player.upsert({
-    where: { email: 'eliott@tennisladder.com' },
-    update: {},
-    create: {
-      email: 'eliott@tennisladder.com',
-      firstName: 'Eliott',
-      lastName: 'Tennis',
-      password: password
+  const playersWithPassword = players.map(player => {
+    return {
+      ...player,
+      password
     }
   })
+  
+  await prisma.player.createMany({
+    data: playersWithPassword
+  })
 
-  const today = new Date()
-  const tenDaysLater = new Date()
-  tenDaysLater.setDate(today.getDate() + 10)
+  await prisma.ladder.createMany({
+    data: ladders
+  })
 
-  const uvFall = await prisma.ladder.upsert({
-    where: { name: 'Utah Valley Fall' },
-    update: {},
-    create: {
-      name: 'Utah Valley Fall',
-      startDate: today,
-      endDate: tenDaysLater
-    }
+  await prisma.ladderPlayers.createMany({
+    data: playersInLadder
   })
 }
 

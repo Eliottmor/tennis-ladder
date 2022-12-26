@@ -1,8 +1,0 @@
-query GetAllLadders {
-  ladders {
-    id
-    name
-    startDate
-    endDate
-  }
-}

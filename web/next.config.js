@@ -1,20 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true
-}
-
-module.exports = nextConfig
-
-module.exports = {
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/login',
-        permanent: true
-      }
-    ]
-  },
+  reactStrictMode: true,
+  experimental: { appDir: true },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
@@ -28,3 +15,6 @@ module.exports = {
     return config
   }
 }
+
+// eslint-disable-next-line no-undef
+module.exports = nextConfig
