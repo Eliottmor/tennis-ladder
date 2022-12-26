@@ -1,7 +1,0 @@
-query GetAllPlayers {
-  players {
-    id
-    email
-    fullName
-  }
-}
