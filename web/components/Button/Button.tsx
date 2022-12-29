@@ -1,8 +1,9 @@
 import { BUTTON_TYPE } from './theme'
 
-enum ButtonType {
+export enum ButtonType {
   Action = 'action',
-  Outline = 'outline'
+  Outline = 'outline',
+  Flat = 'flat'
 }
 
 interface ButtonProps {
@@ -17,7 +18,7 @@ const Button = ({ label, type = ButtonType.Action, ...rest }: ButtonProps) => {
   return (
     <button
       type='button'
-      className={`border border-transparent rounded-[32px] cursor-pointer flex  justify-center items-center px-4 py-2 relative text-center text-xs font-normal min-w-[2rem] uppercase ${buttonTypeClass}`}
+      className={`border border-transparent rounded-[32px] cursor-pointer flex justify-center items-center px-6 py-2 relative text-center text-xs min-w-[2rem] uppercase ${buttonTypeClass}`}
       {...rest}
     >
       {label}

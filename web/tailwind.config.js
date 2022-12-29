@@ -19,6 +19,8 @@ module.exports = {
       textLight: '#5c5d61',
       textLighter: '#e2e4e4',
       transparent: 'transparent',
+      nav: '#171a20',
+      backgroundContainerAlt: 'rgba(0,0,0,.05)',
       black: colors.black,
       white: colors.white,
       gray: colors.slate,

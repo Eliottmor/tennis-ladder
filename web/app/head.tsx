@@ -1,3 +1,3 @@
 export default function Head() {
-  return <title>My Page Title</title>
+  return <title>Tennis Ladder</title>
 }
