@@ -2,8 +2,16 @@
 import Link from 'next/link'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import Button, { ButtonType } from './Button'
+import { Session } from 'next-auth'
+import UserDropDown from './UserDropDown'
 
-const Nav = () => {
+interface NavProps {
+  session: Session
+}
+
+const Nav = ({ session }: NavProps) => {
+  const hasUser = !!session?.user
+
   return (
     <NavigationMenu.Root className='text-nav font-medium'>
       <NavigationMenu.List className='flex items-center'>
@@ -25,18 +33,25 @@ const Nav = () => {
           </Link>
         </NavigationMenu.Item>
 
-        <NavigationMenu.Item className='mt-3 ml-10 absolute right-32'>
-          <Link href='/login' passHref>
-            <Button label='Login'/>
-          </Link>
-        </NavigationMenu.Item>
+        {!hasUser && (
+          <>
+            <NavigationMenu.Item className='mt-3 ml-10 absolute right-32'>
+              <Link href='/login' passHref>
+                <Button label='Login' />
+              </Link>
+            </NavigationMenu.Item>
 
-        <NavigationMenu.Item className='mt-3 absolute right-6'>
-          <Link href='/login' passHref>
-            <Button type={ButtonType.Flat} label='Sign up'/>
-          </Link>
-        </NavigationMenu.Item>
-      
+            <NavigationMenu.Item className='mt-3 absolute right-6'>
+              <Link href='/login' passHref>
+                <Button type={ButtonType.Flat} label='Sign up'/>
+              </Link>
+            </NavigationMenu.Item>
+          </>
+        )}
+
+        {hasUser && (
+          <UserDropDown user={session.user} className='mt-3 absolute right-6'/>
+        )}
       </NavigationMenu.List>
     </NavigationMenu.Root>
   )

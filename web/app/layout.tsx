@@ -18,7 +18,7 @@ export default async function Layout({ children }: LayoutProps) {
       <head></head>
       <body>
         <header>
-          <Nav />
+          <Nav session={session} />
         </header>
         <main>{children}</main>
       </body>

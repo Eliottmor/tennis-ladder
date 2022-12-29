@@ -8,7 +8,7 @@ export enum ButtonType {
 
 interface ButtonProps {
   label: string
-  type: ButtonType
+  type?: ButtonType
   onClick?: () => void
 }
 
