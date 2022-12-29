@@ -1,11 +1,12 @@
+import { ReactNode } from 'react'
 import './globals.css'
 import Nav from '../components/Nav'
 
-interface RootLayoutProps {
-  children: JSX.Element
+interface LayoutProps {
+  children: ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <html lang='en'>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
