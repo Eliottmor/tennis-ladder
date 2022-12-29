@@ -36,7 +36,7 @@ const Nav = ({ session }: NavProps) => {
         {!hasUser && (
           <>
             <NavigationMenu.Item className='mt-3 ml-10 absolute right-32'>
-              <Link href='/login' passHref>
+              <Link href='/api/auth/signin' passHref>
                 <Button label='Login' />
               </Link>
             </NavigationMenu.Item>
