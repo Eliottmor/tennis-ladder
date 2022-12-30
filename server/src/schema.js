@@ -6,7 +6,7 @@ const typeDefs = gql`
   """
   A type that describes the tennis player.
   """
-  type Player {
+  type User {
     id: ID!
     email: String!
     firstName: String!
@@ -25,37 +25,24 @@ const typeDefs = gql`
     startDate: Date!
     "Date the ladder ends"
     endDate: Date!
-    players: [Player]
-  }
-
-  type AuthPayload {
-    token: String
-    player: Player
+    players: [User]
   }
 
   type LadderPlayers {
-    playerId: ID!
+    userId: ID!
     ladderId: ID!
-    player: Player!
+    user: User!
     ladder: Ladder!
   }
 
   type Query {
-    players: [Player!]!
-    currentPlayer: Player
+    players: [User!]!
+    currentUser: User
     ladders: [Ladder!]!
   }
 
   type Mutation {
-    "Creates a new tennis player with password that is supplied."
-    signupPlayer(
-      email: String!
-      password: String!
-      firstName: String!
-      lastName: String!
-    ): AuthPayload
-    "Login the tennis player"
-    login(email: String!, password: String!): AuthPayload
+    "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
     addPlayerToLadder(playerId: ID!, ladderId: ID!): LadderPlayers!
   }

@@ -1,48 +1,9 @@
 const { prisma } = require('../data')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const { APP_SECRET } = require('../utils')
 
-const signupPlayer = async (parent, args) => {
-  const password = await bcrypt.hash(args.password, 10)
-  const player = await prisma.player.create({
-    data: {
-      ...args,
-      password
-    }
-  })
-
-  const token = jwt.sign({ playerId: player.id }, APP_SECRET)
-
-  return {
-    token,
-    player
-  }
-}
-
-const login = async (parent, { password, email }) => {
-  const player = await prisma.player.findUnique({
-    where: { email }
-  })
-
-  const valid = await bcrypt.compare(password.trim(), player?.password || '')
-
-  if (!valid || !player) {
-    throw new Error('Invalid email or password')
-  }
-
-  const token = jwt.sign({ playerId: player.id }, APP_SECRET)
-
-  return {
-    token,
-    player
-  }
-}
-
-const createLadder = async (parent, { name, startDate, endDate }) => {
-  const foundLadder = await prisma.ladder.findUnique({ 
+const createLadder = async (_parent, { name, startDate, endDate }) => {
+  const foundLadder = await prisma.ladder.findUnique({
     where: {
-     name
+      name
     }
   })
 
@@ -59,14 +20,14 @@ const createLadder = async (parent, { name, startDate, endDate }) => {
   return ladder
 }
 
-const addPlayerToLadder = async (parent, { playerId, ladderId }) => {
-  const ladderPlayer = await prisma.ladderPlayers.create({
+const addUserToLadder = async (_parent, { userId, ladderId }) => {
+  const ladderPlayer = await prisma.ladderUsers.create({
     data: {
-      playerId: Number(playerId),
+      userId: userId,
       ladderId: Number(ladderId)
     },
     include: {
-      player: true,
+      user: true,
       ladder: true
     }
   })
@@ -75,8 +36,6 @@ const addPlayerToLadder = async (parent, { playerId, ladderId }) => {
 }
 
 module.exports = {
-  signupPlayer,
-  login,
-  createLadder, 
-  addPlayerToLadder
+  createLadder,
+  addUserToLadder
 }

@@ -5,7 +5,7 @@ const {
 const { typeDefs } = require('./schema')
 const { getPlayerId } = require('./utils')
 const Query = require('./resolvers/Query')
-const Player = require('./resolvers/Player')
+const User = require('./resolvers/User')
 const Mutation = require('./resolvers/Mutation')
 const Ladder = require('./resolvers/Ladder')
 const Date = require('./resolvers/custom-scalars/date')
@@ -15,7 +15,7 @@ const port = process.env.PORT || 4000
 const resolvers = {
   Query,
   Mutation,
-  Player,
+  User,
   Ladder,
   Date
 }

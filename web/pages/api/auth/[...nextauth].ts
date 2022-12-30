@@ -20,7 +20,15 @@ export const authOptions: AuthOptions = {
       maxAge: 10 * 60 // Magic links are valid for 10 min only
     })
   ],
-  adapter: PrismaAdapter(prisma)
+  adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user }) {
+      if (user) {
+        session.user.id = user.id
+      }
+      return session
+    }
+  }
 }
 
 export default NextAuth(authOptions)
