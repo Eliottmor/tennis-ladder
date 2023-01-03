@@ -16,6 +16,7 @@ module.exports = {
       error: '#b74134',
       neutral: '#f5f5f5',
       darkNeutral: '#d0d1d2',
+      text: '#393c41',
       textLight: '#5c5d61',
       textLighter: '#e2e4e4',
       transparent: 'transparent',

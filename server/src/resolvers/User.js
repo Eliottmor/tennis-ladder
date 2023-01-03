@@ -6,8 +6,8 @@ const fullName = (parent) => `${parent.firstName} ${parent.lastName}`
 const ladders = (parent) => {
   return prisma.ladder.findMany({
     where: {
-      players: {
-        some: { playerId: parent?.id }
+      users: {
+        some: { userId: parent?.id }
       }
     }
   })
@@ -15,7 +15,7 @@ const ladders = (parent) => {
 
 
 module.exports = {
-  id, 
+  id,
   email,
   fullName,
   ladders

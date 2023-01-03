@@ -7,12 +7,12 @@ const typeDefs = gql`
   A type that describes the tennis player.
   """
   type User {
-    id: ID!
+    id: String!
     email: String!
-    firstName: String!
-    lastName: String!
+    firstName: String
+    lastName: String
     "Combination of first and last name"
-    fullName: String!
+    fullName: String
     ladders: [Ladder]
   }
 
@@ -28,8 +28,8 @@ const typeDefs = gql`
     players: [User]
   }
 
-  type LadderPlayers {
-    userId: ID!
+  type LadderUsers {
+    userId: String!
     ladderId: ID!
     user: User!
     ladder: Ladder!
@@ -44,7 +44,7 @@ const typeDefs = gql`
   type Mutation {
     "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
-    addPlayerToLadder(playerId: ID!, ladderId: ID!): LadderPlayers!
+    addUserToLadder(userId: String!, ladderId: ID!): LadderUsers!
   }
 `
 
