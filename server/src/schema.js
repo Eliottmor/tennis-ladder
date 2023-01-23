@@ -13,6 +13,10 @@ const typeDefs = gql`
     lastName: String
     "Combination of first and last name"
     fullName: String
+    "Profile image"
+    image: String
+    "Fall back text which is just first letter of first and last name"
+    fallbackImgText: String
     ladders: [Ladder]
   }
 

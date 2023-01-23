@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import Avatar from '../../components/Avatar'
+import ProfileHoverCard from '../../components/HoverCard/HoverCard'
 import Table from '../../components/Table'
 import { client } from '../../gql-client'
 
@@ -9,6 +9,8 @@ const GetAllPlayers = gql`
       id
       email
       fullName
+      image
+      fallbackImgText
       ladders {
         id
       }
@@ -19,14 +21,22 @@ const GetAllPlayers = gql`
 export default async function Players() {
   const gqlClient = await client()
   const data = await gqlClient.request(GetAllPlayers)
+  console.log(data)
 
   const fullNameCell = {
     headerLabel: 'Name',
-    renderCell: ({ fullName }) => <div className='flex'>
-      {fullName !== 'Eliott Tennis' && (<Avatar imgSrc='https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80' fallbackText='EM' imgAlt='fullName' />)}
-      {fullName === 'Eliott Tennis' && (<Avatar fallbackText='EM' imgAlt={fullName} />)}
-      <span className='pl-3 self-center'>{fullName}</span>
-    </div>
+    renderCell: ({ fullName, image, email, fallbackImgText }) => (
+      <div className='flex'>
+        <ProfileHoverCard
+          imgSrc={image}
+          fullName={fullName}
+          fallbackText={fallbackImgText}
+          imgAlt={fullName}
+          email={email}
+        />
+        <span className='pl-3 self-center'>{fullName}</span>
+      </div>
+    )
   }
 
   const emailCell = {

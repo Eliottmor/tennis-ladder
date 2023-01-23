@@ -12,11 +12,15 @@ const ladders = (parent) => {
     }
   })
 }
+const image = (parent) => parent.image
+const fallbackImgText = (parent) => `${parent.firstName?.charAt() || ''}${parent.lastName?.charAt() || ''}`
 
 
 module.exports = {
   id,
   email,
   fullName,
-  ladders
+  ladders,
+  image,
+  fallbackImgText
 }
