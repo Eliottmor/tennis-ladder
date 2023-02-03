@@ -13,7 +13,7 @@ const GetAllLadders = gql`
   }
 `
 
-export default async function Players() {
+export default async function Ladders() {
   const gqlClient = await client()
   const data = await gqlClient.request(GetAllLadders)
   
