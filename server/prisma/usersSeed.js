@@ -3,7 +3,8 @@ const players = [
     id: 'clc9fmosa00039p56h616vlm1',
     email: 'eliott@tennisladder.com',
     firstName: 'Eliott',
-    lastName: 'Tennis'
+    lastName: 'Tennis',
+    phoneNumber: '951-977-0765'
   },
   {
     id: 'clc9fmosa00039p56h616vlm2',

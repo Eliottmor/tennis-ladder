@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../../prisma/src/generated/prisma"
 }
 
 datasource db {
@@ -57,17 +58,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
+  phoneNumber   String?
   accounts      Account[]
   sessions      Session[]
-
-  firstName String?
-  lastName  String?
-  ladders   LadderUsers[]
+  firstName     String?
+  lastName      String?
+  ladders       LadderUsers[]
 }
 
 model VerificationToken {
