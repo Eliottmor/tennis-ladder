@@ -1,7 +1,7 @@
+'use client'
 import Table from '../../components/Table'
 
-
-export default async function Loading() {
+export default function Loading() {
   
   const nameCell = {
     headerLabel: 'Name',

@@ -1,3 +1,4 @@
+'use client'
 import { ReactNode } from 'react'
 
 interface TableCell {
@@ -9,11 +10,18 @@ interface TableProps {
   cells: TableCell[]
   rows?: unknown[]
   skeletonRows?: number
+  onClick?: (cell: unknown) => void
 }
 
-const Table = ({ cells, rows, skeletonRows }: TableProps) => {
+const Table = ({
+  cells,
+  rows,
+  skeletonRows,
+  onClick
+}: TableProps) => {
   const isSkeletonLoader = !!skeletonRows
   const tableRows = isSkeletonLoader ? Array(skeletonRows).fill(1) : rows
+  const cursorPointer = onClick ? 'hover:cursor-pointer' : null
 
   return (
     <table className='table-fixed' width='100%'>
@@ -28,8 +36,11 @@ const Table = ({ cells, rows, skeletonRows }: TableProps) => {
       </thead>
       <tbody>
         {tableRows.map((_, index: number) => (
-          // TODO: created a table row component that uses the use client flag
-          <tr key={`table-row-${index}`} className='hover:bg-backgroundContainerAlt hover:cursor-pointer'>
+          <tr
+            key={`table-row-${index}`}
+            className={`hover:bg-backgroundContainerAlt ${cursorPointer}`}
+            onClick={() => onClick && onClick(tableRows[index])}
+          >
             {cells.map(({ renderCell }: TableCell, cellIndex: number) => {
               return (
                 <td className='py-4 pr-5 border-gray-100 border-b' key={`table-cell-${cellIndex}`}>{renderCell(tableRows[index])}</td>

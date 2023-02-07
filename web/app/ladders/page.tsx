@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
-import Table from '../../components/Table'
 import { client } from '../../gql-client'
+import LaddersPage from './laddersPage'
 
 const GetAllLadders = gql`
   {
@@ -17,26 +17,7 @@ export default async function Ladders() {
   const gqlClient = await client()
   const data = await gqlClient.request(GetAllLadders)
   
-  const nameCell = {
-    headerLabel: 'Name',
-    renderCell: ({ name }) => <div>{name}</div>
-  }
-
-  const startDateCell = {
-    headerLabel: 'Start date',
-    renderCell: ({ startDate }) => <div>{startDate}</div>
-  }
-
-  const endDateCell = {
-    headerLabel: 'End date',
-    renderCell: ({ endDate }) => <div>{endDate}</div>
-  }
-
-  const cells = [nameCell, startDateCell, endDateCell]
-
   return (
-    <div className='p-16'>
-      <Table cells={cells} rows={data?.ladders} />
-    </div>
+    <LaddersPage ladders={data?.ladders} />
   )
 }

@@ -10,7 +10,6 @@ interface LayoutProps {
 
 export default async function Layout({ children }: LayoutProps) {
   const session = await getServerSession(authOptions)
-  console.log(session)
 
   return (
     <html lang='en'>
