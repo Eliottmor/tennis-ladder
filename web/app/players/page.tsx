@@ -13,6 +13,7 @@ const GetAllPlayers = gql`
       fallbackImgText
       ladders {
         id
+        name
       }
     }
   }
@@ -46,7 +47,14 @@ export default async function Players() {
 
   const ladderCell = {
     headerLabel: 'Ladders',
-    renderCell: ({ ladders }) => <div>{ladders?.length}</div>
+    renderCell: ({ ladders }) => (
+      <div>
+        {ladders?.length}
+        <div>
+          {ladders.map(ladder => <div key={ladder?.id}>{ladder?.name}</div>)}
+        </div>
+      </div>
+    )
   }
 
   const cells = [fullNameCell, emailCell, ladderCell]

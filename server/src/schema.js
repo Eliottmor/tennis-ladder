@@ -42,6 +42,7 @@ const typeDefs = gql`
   type Query {
     players: [User!]!
     currentUser: User
+    getUserById(userId: String!): User
     ladders: [Ladder!]!
   }
 

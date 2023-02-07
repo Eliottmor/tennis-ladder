@@ -10,6 +10,12 @@ const currentUser = (_parent, _args, context) => {
   })
 }
 
+const getUserById = (_parent, { userId }) => {
+  return prisma.user.findUnique({
+    where: { id: userId }
+  })
+}
+
 const ladders = (parent) => {
   return prisma.ladder.findMany({})
 }
@@ -17,5 +23,6 @@ const ladders = (parent) => {
 module.exports = {
   players,
   currentUser,
-  ladders
+  ladders,
+  getUserById
 }
