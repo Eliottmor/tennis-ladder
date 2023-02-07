@@ -17,12 +17,17 @@ export default async function Loading() {
     renderCell: () => <div className='rounded-md animate-pulse bg-gray-200 w-96 h-[21px]' />
   }
 
+  const phoneNumberCell = {
+    headerLabel: 'Phone Number',
+    renderCell: () => <div className='rounded-md animate-pulse bg-gray-200 w-96 h-[21px]' />
+  }
+
   const ladderCell = {
     headerLabel: 'Ladders',
     renderCell: () => <div className='rounded-md animate-pulse bg-gray-200 w-10 h-[21px]' />
   }
 
-  const cells = [fullNameCell, emailCell, ladderCell]
+  const cells = [fullNameCell, emailCell, phoneNumberCell, ladderCell]
 
   return (
     <div className='p-16'>

@@ -11,6 +11,7 @@ const typeDefs = gql`
     email: String!
     firstName: String
     lastName: String
+    phoneNumber: String
     "Combination of first and last name"
     fullName: String
     "Profile image"

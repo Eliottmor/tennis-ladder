@@ -10,6 +10,7 @@ const GetAllPlayers = gql`
       email
       fullName
       image
+      phoneNumber
       fallbackImgText
       ladders {
         id
@@ -45,6 +46,11 @@ export default async function Players() {
     renderCell: ({ email }) => <div>{email}</div>
   }
 
+  const phoneNumberCell = {
+    headerLabel: 'Phone Number',
+    renderCell: ({ phoneNumber }) => <div>{phoneNumber}</div>
+  }
+
   const ladderCell = {
     headerLabel: 'Ladders',
     renderCell: ({ ladders }) => (
@@ -57,7 +63,7 @@ export default async function Players() {
     )
   }
 
-  const cells = [fullNameCell, emailCell, ladderCell]
+  const cells = [fullNameCell, emailCell, phoneNumberCell, ladderCell]
 
   return (
     <div className='p-16'>
