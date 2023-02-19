@@ -1,2 +1,3 @@
+import { ButtonType } from './types'
 export { default } from './Button'
-export { ButtonType } from './Button'
+export { ButtonType }

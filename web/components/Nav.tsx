@@ -43,7 +43,7 @@ const Nav = ({ session }: NavProps) => {
 
             <NavigationMenu.Item className='mt-3 absolute right-6'>
               <Link href='/login' passHref>
-                <Button type={ButtonType.Flat} label='Sign up'/>
+                <Button buttonType={ButtonType.Flat} label='Sign up'/>
               </Link>
             </NavigationMenu.Item>
           </>

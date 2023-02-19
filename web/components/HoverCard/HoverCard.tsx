@@ -1,7 +1,6 @@
 'use client'
 import * as HoverCard from '@radix-ui/react-hover-card'
-import Avatar from '../Avatar'
-import { ImageSize } from '../Avatar/Avatar'
+import Avatar, { ImageSize} from '../Avatar'
 
 interface ProfileHoverCardProps {
   imgSrc?: string

@@ -1,13 +1,8 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from './pages/api/auth/[...nextauth]'
-import { GraphQLClient } from 'graphql-request'
+import { request } from 'graphql-request'
 
-export const client = async () => {
+export async function gqlRequest(query, variables?) {
   const session = await getServerSession(authOptions)
-  const client = new GraphQLClient(process.env.GRAPHQL_API_URL, {
-    headers: {
-      userId: session?.user?.id
-    }}
-  )
-  return client
+  return request(process.env.GRAPHQL_API_URL, query, variables, { userId: session?.user?.id })
 }

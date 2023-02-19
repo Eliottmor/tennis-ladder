@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { client } from '../../gql-client'
+import { gqlRequest } from '../../gql-client'
 import LaddersPage from './laddersPage'
 
 const GetAllLadders = gql`
@@ -14,8 +14,7 @@ const GetAllLadders = gql`
 `
 
 export default async function Ladders() {
-  const gqlClient = await client()
-  const data = await gqlClient.request(GetAllLadders)
+  const data = await gqlRequest(GetAllLadders)
   
   return (
     <LaddersPage ladders={data?.ladders} />
