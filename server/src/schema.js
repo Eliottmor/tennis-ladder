@@ -51,6 +51,7 @@ const typeDefs = gql`
     "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
     addUserToLadder(userId: String!, ladderId: ID!): LadderUsers!
+    updateUserById(userId: String!, firstName: String, lastName: String, email: String, phoneNumber: String): User
   }
 `
 

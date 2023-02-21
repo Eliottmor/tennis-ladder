@@ -1,4 +1,5 @@
 import * as LabelPrimitive from '@radix-ui/react-label'
+import { InputHTMLAttributes } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form/dist/types'
 import { toCamelCase } from '../../utils/textHelper'
 
@@ -7,7 +8,7 @@ interface LabelProps {
   children: string
 }
 
-interface TextFieldBlockProps {
+interface TextFieldBlockProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
   className?: string
   inputClass?: string
@@ -26,7 +27,14 @@ const Label = ({ label }: LabelProps) => {
   )
 }
 
-const TextFieldBlock = ({ label, className, register, isPassword, inputClass, ...rest }: TextFieldBlockProps) => {
+const TextFieldBlock = ({
+  label,
+  className, 
+  register,
+  isPassword,
+  inputClass,
+  ...rest
+}: TextFieldBlockProps) => {
   const password = isPassword && { type: 'password' }
 
   return (
@@ -48,7 +56,8 @@ const TextFieldBlock = ({ label, className, register, isPassword, inputClass, ..
           mx-0
           mb-5
           box-border
-          ${inputClass}`}
+          ${inputClass}`
+        }
         id={label}
         {...password}
         {...register(toCamelCase(label))}

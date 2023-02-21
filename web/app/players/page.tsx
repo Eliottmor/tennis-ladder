@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { gqlRequest } from '../../gql-client'
+import { serverRequest } from '../../server-gql-request'
 import PlayersPage from './playersPage'
 
 const GetAllPlayers = gql`
@@ -20,7 +20,7 @@ const GetAllPlayers = gql`
 `
 
 export default async function Players() {
-  const data = await gqlRequest(GetAllPlayers)
+  const data = await serverRequest(GetAllPlayers)
 
   return (
     <PlayersPage players={data?.players} />

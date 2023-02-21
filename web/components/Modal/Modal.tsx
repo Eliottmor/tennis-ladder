@@ -1,19 +1,27 @@
 'use client'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { ReactNode } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 interface ModalProps {
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
   trigger: ReactNode
   title: string,
   subtitle?: string
-  action: ReactNode
   children: ReactNode
 }
 
-const Modal = ({ trigger, title, subtitle, action, children}: ModalProps) => {
+const Modal = ({
+  isOpen,
+  setIsOpen,
+  trigger,
+  title,
+  subtitle,
+  children
+}: ModalProps) => {
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         {trigger}
       </Dialog.Trigger>
@@ -23,11 +31,6 @@ const Modal = ({ trigger, title, subtitle, action, children}: ModalProps) => {
           <Dialog.Title className='font-medium m-0 text-xl'>{title}</Dialog.Title>
           {subtitle && <Dialog.Description className='mt-2 mb-5 leading-normal text-textLight'>{subtitle}</Dialog.Description>}
           {children}
-          <div className='flex mt-6 justify-end'>
-            <Dialog.Close asChild>
-              {action}
-            </Dialog.Close>
-          </div>
           <Dialog.Close asChild>
             <button className='hover:bg-sky-100 focus:shadow-darkBlue absolute top-4 right-4 inline-flex h-7 w-7 appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none' aria-label='Close'>
               <Cross2Icon />

@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import Avatar, { ImageSize } from '../../../components/Avatar'
-import { gqlRequest } from '../../../gql-client'
+import { serverRequest } from '../../../server-gql-request'
 import ProfileEditModalForm from './ProfileEditModalForm'
 
 const query = gql`
@@ -8,6 +8,8 @@ const query = gql`
     getUserById(userId:$userId) {
       id
       image
+      firstName
+      lastName
       fullName
       phoneNumber
       email
@@ -18,26 +20,26 @@ const query = gql`
 
 export default async function Profile({ params }) {
   const userId = params?.userId
-  const { getUserById: user } = await gqlRequest(query, { userId })
+  const { getUserById: user } = await serverRequest(query, { userId })
+  const userPhoneNumber = user?.phoneNumber || '—'
 
   return (
     <div className='p-16'>
       <Avatar imgAlt='profile picture' imgSize={ImageSize.Xl} fallbackText={user?.fallbackImgText} imgSrc={user?.image} />
       <div className='pl-2 text-5xl align-middle inline-flex'>
         {user?.fullName}
-        <ProfileEditModalForm />
+        <ProfileEditModalForm user={user}/>
       </div>
-      
 
       <div className='grid lg:grid-cols-3'>
         <div className='pt-4'>
           <h2 className='pt-8 text-lg font-semibold'>
             Contact Information
           </h2>
-          <div className='font-medium text-text'>Email </div>
+          <div className='font-medium text-text'>Email</div>
           <div className='mb-4'>{user?.email}</div>
-          <div className='font-medium text-text'>Phone number </div>
-          <div className='mb-4'>{user?.phoneNumber}</div>
+          <div className='font-medium text-text'>Phone number</div>
+          <div className='mb-4'>{userPhoneNumber}</div>
         </div>
 
         <div className='pt-4'>

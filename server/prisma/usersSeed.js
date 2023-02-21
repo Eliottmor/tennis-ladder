@@ -5,6 +5,7 @@ const players = [
     firstName: 'Eliott',
     lastName: 'Tennis',
     phoneNumber: '951-977-0765',
+    image: 'https://dvjttgyvxibrgaynzxmy.supabase.co/storage/v1/object/public/tennis/68840311768__290610F8-5EC8-466E-A7C7-D1C7CB218E71.JPG',
     ladders: {
       connect: [{ id: 1 }, { id: 2 }]
     }
@@ -14,6 +15,7 @@ const players = [
     email: 'megan@tennisladder.com',
     firstName: 'Megan',
     lastName: 'Tennis',
+    image: 'https://dvjttgyvxibrgaynzxmy.supabase.co/storage/v1/object/public/tennis/IMG_1283.JPG',
     ladders: {
       connect: [{ id: 1 }, { id: 2 }]
     }
