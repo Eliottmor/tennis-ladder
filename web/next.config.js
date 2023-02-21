@@ -1,8 +1,15 @@
+/* eslint-disable no-undef */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { PrismaPlugin } = require('experimental-prisma-webpack-plugin')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   experimental: { appDir: true },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.plugins = [...config.plugins, new PrismaPlugin()]
+    }
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
@@ -16,5 +23,4 @@ const nextConfig = {
   }
 }
 
-// eslint-disable-next-line no-undef
 module.exports = nextConfig

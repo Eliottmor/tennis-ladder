@@ -1,7 +1,7 @@
 import NextAuth, { AuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../../../../prisma/src/generated/prisma'
 
 const prisma = new PrismaClient()
 
@@ -20,7 +20,15 @@ export const authOptions: AuthOptions = {
       maxAge: 10 * 60 // Magic links are valid for 10 min only
     })
   ],
-  adapter: PrismaAdapter(prisma)
+  adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user }) {
+      if (user) {
+        session.user.id = user.id
+      }
+      return session
+    }
+  }
 }
 
 export default NextAuth(authOptions)

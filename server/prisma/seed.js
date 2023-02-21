@@ -1,30 +1,37 @@
-const { PrismaClient } = require('@prisma/client')
-const bcrypt = require('bcryptjs')
-const players = require('./playersSeed')
+const { PrismaClient } = require('../../prisma/src/generated/prisma')
+const users = require('./usersSeed')
 const ladders = require('./laddersSeed')
-const playersInLadder = require('./playersInLadderSeed')
+const usersInLadder = require('./usersInLadderSeed')
 
 const prisma = new PrismaClient()
 
 async function main() {
-  const password = await bcrypt.hash('test', 10)
-  const playersWithPassword = players.map(player => {
-    return {
-      ...player,
-      password
-    }
-  })
-  
-  await prisma.player.createMany({
-    data: playersWithPassword
-  })
-
   await prisma.ladder.createMany({
     data: ladders
   })
 
-  await prisma.ladderPlayers.createMany({
-    data: playersInLadder
+  await prisma.user.create({
+    data: users[0]
+  })
+
+  await prisma.user.create({
+    data: users[1]
+  })
+
+  await prisma.user.create({
+    data: users[2]
+  })
+
+  await prisma.user.create({
+    data: users[3]
+  })
+
+  await prisma.ustaInfo.create({
+    data: {
+      userId: 'clc9fmosa00039p56h616vlm1',
+      ntrpRating: '4.5',
+      ustaNumber: '222763281'
+    }
   })
 }
 

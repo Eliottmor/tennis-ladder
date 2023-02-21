@@ -1,29 +1,38 @@
-import { BUTTON_TYPE } from './theme'
+import { InputHTMLAttributes, forwardRef } from 'react'
+import { BUTTON_TEXT_SIZE, BUTTON_TYPE } from './theme'
+import { ButtonTextSize, ButtonType } from './types'
 
-export enum ButtonType {
-  Action = 'action',
-  Outline = 'outline',
-  Flat = 'flat'
-}
-
-interface ButtonProps {
+interface ButtonProps extends InputHTMLAttributes<HTMLButtonElement> {
   label: string
-  type?: ButtonType
-  onClick?: () => void
+  className?: string
+  buttonType?: ButtonType
+  textSize?: ButtonTextSize
+  type?: 'submit' | 'reset' | 'button'
 }
 
-const Button = ({ label, type = ButtonType.Action, ...rest }: ButtonProps) => {
-  const buttonTypeClass = BUTTON_TYPE[type]
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+  label,
+  buttonType = ButtonType.Action,
+  textSize = ButtonTextSize.DEFAULT,
+  className,
+  type = 'button',
+  ...rest
+}, forwardedRef) => {
+  const buttonTypeClass = BUTTON_TYPE[buttonType]
+  const buttonTextSize = BUTTON_TEXT_SIZE[textSize]
 
   return (
     <button
-      type='button'
-      className={`border border-transparent rounded-[32px] cursor-pointer flex justify-center items-center px-6 py-2 relative text-center text-xs min-w-[2rem] uppercase ${buttonTypeClass}`}
+      type={type}
+      ref={forwardedRef}
+      className={`border border-transparent rounded-lg cursor-pointer flex justify-center items-center px-6 py-2 relative text-center h-8 min-w-[2rem] ${className} ${buttonTextSize} ${buttonTypeClass}`}
       {...rest}
     >
       {label}
     </button>
   )
-}
+})
+
+Button.displayName = 'Button'
 
 export default Button

@@ -6,14 +6,31 @@ const typeDefs = gql`
   """
   A type that describes the tennis player.
   """
-  type Player {
-    id: ID!
+  type User {
+    id: String!
     email: String!
-    firstName: String!
-    lastName: String!
+    firstName: String
+    lastName: String
+    phoneNumber: String
     "Combination of first and last name"
-    fullName: String!
+    fullName: String
+    "Profile image"
+    image: String
+    "Fall back text which is just first letter of first and last name"
+    fallbackImgText: String
     ladders: [Ladder]
+    ustaInfo: UstaInfo
+  }
+
+  """
+  Usta information based on the user
+  """
+  type UstaInfo {
+    "Usta Number"
+    id: String
+    ustaNumber: String
+    ntrpRating: String
+    user: User
   }
 
   """
@@ -25,39 +42,38 @@ const typeDefs = gql`
     startDate: Date!
     "Date the ladder ends"
     endDate: Date!
-    players: [Player]
+    players: [User]
   }
 
-  type AuthPayload {
-    token: String
-    player: Player
-  }
-
-  type LadderPlayers {
-    playerId: ID!
+  type LadderUsers {
+    userId: String!
     ladderId: ID!
-    player: Player!
+    user: User!
     ladder: Ladder!
   }
 
   type Query {
-    players: [Player!]!
-    currentPlayer: Player
+    players: [User!]!
+    currentUser: User
+    getUserById(userId: String!): User
     ladders: [Ladder!]!
   }
 
+  input UpdateUserByIdInput {
+    userId: String!
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+    ntrpRating: String
+    ustaNumber: String
+  }
+
   type Mutation {
-    "Creates a new tennis player with password that is supplied."
-    signupPlayer(
-      email: String!
-      password: String!
-      firstName: String!
-      lastName: String!
-    ): AuthPayload
-    "Login the tennis player"
-    login(email: String!, password: String!): AuthPayload
+    "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
-    addPlayerToLadder(playerId: ID!, ladderId: ID!): LadderPlayers!
+    addUserToLadder(userId: String!, ladderId: ID!): LadderUsers!
+    updateUserById(input: UpdateUserByIdInput!): User
   }
 `
 

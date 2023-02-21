@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../../prisma/src/generated/prisma"
 }
 
 datasource db {
@@ -8,33 +9,13 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Player {
-  id        Int             @id @default(autoincrement())
-  email     String          @unique
-  firstName String
-  lastName  String
-  password  String
-  createdAt DateTime        @default(now())
-  ladders   LadderPlayers[]
-}
-
 model Ladder {
-  id        Int             @id @default(autoincrement())
-  name      String          @unique
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
   startDate DateTime
   endDate   DateTime
-  createdAt DateTime        @default(now())
-  players   LadderPlayers[]
-}
-
-model LadderPlayers {
-  player    Player   @relation(fields: [playerId], references: [id])
-  playerId  Int
-  ladder    Ladder   @relation(fields: [ladderId], references: [id])
-  ladderId  Int
   createdAt DateTime @default(now())
-
-  @@id([playerId, ladderId])
+  users     User[]
 }
 
 model Account {
@@ -68,12 +49,16 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  phoneNumber   String?
   accounts      Account[]
   sessions      Session[]
+  firstName     String?
+  lastName      String?
+  ladders       Ladder[]
+  ustaInfo      UstaInfo?
 }
 
 model VerificationToken {
@@ -82,4 +67,12 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model UstaInfo {
+  id         Int    @id @default(autoincrement())
+  ustaNumber String @unique
+  userId     String @unique
+  ntrpRating String
+  user       User   @relation(fields: [userId], references: [id])
 }

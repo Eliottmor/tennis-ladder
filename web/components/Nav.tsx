@@ -10,7 +10,7 @@ interface NavProps {
 }
 
 const Nav = ({ session }: NavProps) => {
-  const hasUser = !!session?.user
+  const isLoggedIn = !!session?.user
 
   return (
     <NavigationMenu.Root className='text-nav font-medium'>
@@ -33,7 +33,7 @@ const Nav = ({ session }: NavProps) => {
           </Link>
         </NavigationMenu.Item>
 
-        {!hasUser && (
+        {!isLoggedIn && (
           <>
             <NavigationMenu.Item className='mt-3 ml-10 absolute right-32'>
               <Link href='/api/auth/signin' passHref>
@@ -43,13 +43,13 @@ const Nav = ({ session }: NavProps) => {
 
             <NavigationMenu.Item className='mt-3 absolute right-6'>
               <Link href='/login' passHref>
-                <Button type={ButtonType.Flat} label='Sign up'/>
+                <Button buttonType={ButtonType.Flat} label='Sign up'/>
               </Link>
             </NavigationMenu.Item>
           </>
         )}
 
-        {hasUser && (
+        {isLoggedIn && (
           <UserDropDown user={session.user} className='mt-3 absolute right-6'/>
         )}
       </NavigationMenu.List>
