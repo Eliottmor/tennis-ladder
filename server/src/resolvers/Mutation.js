@@ -35,15 +35,21 @@ const addUserToLadder = async (_parent, { userId, ladderId }) => {
   return ladderPlayer
 }
 
-const updateUserById = async (_parent, { userId, firstName, lastName, phoneNumber, email }) => {
-  console.log(userId)
+const updateUserById = async (_parent, { input }) => {
+  const { userId, firstName, lastName, phoneNumber, email, ustaNumber, ntrpRating } = input
   const user = await prisma.user.update({
     where: { id: userId },
     data: {
       firstName,
       lastName,
       email,
-      phoneNumber
+      phoneNumber,
+      ustaInfo: {
+        upsert: {
+          create: { ustaNumber, ntrpRating },
+          update: { ustaNumber, ntrpRating }
+        }
+      }
     }
   })
 

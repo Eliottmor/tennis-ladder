@@ -58,6 +58,7 @@ model User {
   firstName     String?
   lastName      String?
   ladders       Ladder[]
+  ustaInfo      UstaInfo?
 }
 
 model VerificationToken {
@@ -66,4 +67,12 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model UstaInfo {
+  id         Int    @id @default(autoincrement())
+  ustaNumber String @unique
+  userId     String @unique
+  ntrpRating String
+  user       User   @relation(fields: [userId], references: [id])
 }

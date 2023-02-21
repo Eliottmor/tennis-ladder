@@ -14,6 +14,10 @@ const query = gql`
       phoneNumber
       email
       fallbackImgText
+      ustaInfo {
+        ustaNumber
+        ntrpRating
+      }
     }
   }
 `
@@ -21,7 +25,7 @@ const query = gql`
 export default async function Profile({ params }) {
   const userId = params?.userId
   const { getUserById: user } = await serverRequest(query, { userId })
-  const userPhoneNumber = user?.phoneNumber || '—'
+  const { ustaNumber, ntrpRating } = user?.ustaInfo || {}
 
   return (
     <div className='p-16'>
@@ -39,7 +43,7 @@ export default async function Profile({ params }) {
           <div className='font-medium text-text'>Email</div>
           <div className='mb-4'>{user?.email}</div>
           <div className='font-medium text-text'>Phone number</div>
-          <div className='mb-4'>{userPhoneNumber}</div>
+          <div className='mb-4'>{user?.phoneNumber || '—'}</div>
         </div>
 
         <div className='pt-4'>
@@ -47,9 +51,9 @@ export default async function Profile({ params }) {
             USTA
           </h2>
           <div className='font-medium text-text'>USTA Number </div>
-          <div className='mb-4'>2111251437</div>
+          <div className='mb-4'>{ustaNumber || '—'}</div>
           <div className='font-medium text-text'>Rating </div>
-          <div className='mb-4'>4.5</div>
+          <div className='mb-4'>{ntrpRating || '—'}</div>
         </div>
 
         <div className='pt-4'>

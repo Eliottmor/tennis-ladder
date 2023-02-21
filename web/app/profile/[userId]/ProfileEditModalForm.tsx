@@ -8,14 +8,18 @@ import TextFieldBlock from '../../../components/TextFieldBlock'
 import { clientRequest } from '../../../client-gql-request'
 import { useRouter } from 'next/navigation'
 
+interface USTAInfo {
+  ustaNumber: string
+  ntrpRating: string
+}
+
 interface User {
   id: string
   firstName: string
   lastName: string
   phoneNumber: string
   email: string
-  ustaNumber: string
-  ustaRating: string
+  ustaInfo: USTAInfo
 }
 
 interface ProfileEditModalFormProps {
@@ -23,8 +27,8 @@ interface ProfileEditModalFormProps {
 }
 
 const updateUserById = gql`
-  mutation UpdateUserById($userId: String!, $phoneNumber: String, $email: String, $firstName: String, $lastName: String) {
-    updateUserById(userId: $userId, email: $email, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName) {
+  mutation UpdateUserById($input: UpdateUserByIdInput!) {
+    updateUserById(input: $input) {
       id
     }
   }
@@ -35,7 +39,7 @@ const ProfileEditModalForm = ({ user }: ProfileEditModalFormProps) => {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const updateProfile = (data) => {
-    clientRequest(updateUserById, {...data, userId: user?.id }).then(() => {
+    clientRequest(updateUserById, { input: {...data, userId: user?.id }}).then(() => {
       setIsOpen(false)
       router.refresh()
     })
@@ -55,9 +59,9 @@ const ProfileEditModalForm = ({ user }: ProfileEditModalFormProps) => {
           <TextFieldBlock className='inline-block' label='Last name' defaultValue={user?.lastName} register={register} />
           <TextFieldBlock className='pr-12 inline-block' label='Phone number' defaultValue={user?.phoneNumber} register={register} />
           <TextFieldBlock className='inline-block' label='Email' defaultValue={user?.email} register={register} />
-          {/* <TextFieldBlock className='pr-12 inline-block' label='USTA Number' register={register} />
-          <TextFieldBlock className='inline-block' label='USTA Rating' register={register}/>
-          <TextFieldBlock inputClass='w-11/12' label='Availability' register={register}/> */}
+          <TextFieldBlock className='pr-12 inline-block' label='USTA Number' defaultValue={user?.ustaInfo?.ustaNumber} register={register} />
+          <TextFieldBlock className='inline-block' label='NTRP Rating' defaultValue={user?.ustaInfo?.ntrpRating} register={register}/>
+          {/* <TextFieldBlock inputClass='w-11/12' label='Availability' register={register}/> */}
           <div className='flex mt-6 justify-end'>
             <Button label='Save changes' type='submit' />
           </div>

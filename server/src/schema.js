@@ -19,6 +19,18 @@ const typeDefs = gql`
     "Fall back text which is just first letter of first and last name"
     fallbackImgText: String
     ladders: [Ladder]
+    ustaInfo: UstaInfo
+  }
+
+  """
+  Usta information based on the user
+  """
+  type UstaInfo {
+    "Usta Number"
+    id: String
+    ustaNumber: String
+    ntrpRating: String
+    user: User
   }
 
   """
@@ -47,11 +59,21 @@ const typeDefs = gql`
     ladders: [Ladder!]!
   }
 
+  input UpdateUserByIdInput {
+    userId: String!
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+    ntrpRating: String
+    ustaNumber: String
+  }
+
   type Mutation {
     "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
     addUserToLadder(userId: String!, ladderId: ID!): LadderUsers!
-    updateUserById(userId: String!, firstName: String, lastName: String, email: String, phoneNumber: String): User
+    updateUserById(input: UpdateUserByIdInput!): User
   }
 `
 

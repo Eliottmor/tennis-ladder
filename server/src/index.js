@@ -9,6 +9,7 @@ const User = require('./resolvers/User')
 const Mutation = require('./resolvers/Mutation')
 const Ladder = require('./resolvers/Ladder')
 const Date = require('./resolvers/custom-scalars/date')
+const UstaInfo = require('./resolvers/UstaInfo')
 
 const port = process.env.PORT || 4000
 
@@ -17,7 +18,8 @@ const resolvers = {
   Mutation,
   User,
   Ladder,
-  Date
+  Date,
+  UstaInfo
 }
 
 const server = new ApolloServer({
