@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
-import Avatar, { ImageSize } from '../../../components/Avatar'
-import { serverRequest } from '../../../server-gql-request'
+import Avatar, { ImageSize } from '@ui/Avatar'
+import { serverRequest } from '@gql/server-gql-request'
 import ProfileEditModalForm from './ProfileEditModalForm'
 
 const query = gql`

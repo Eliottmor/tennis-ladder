@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../pages/api/auth/[...nextauth]'
 import './globals.css'
-import Nav from '../components/Nav'
+import Nav from '@ui/Nav'
 
 interface LayoutProps {
   children: ReactNode

@@ -1,5 +1,5 @@
 'use client'
-import Table from '../../components/Table'
+import Table from '@ui/Table'
 
 interface Ladder {
   id: string

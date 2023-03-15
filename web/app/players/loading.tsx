@@ -1,5 +1,5 @@
 'use client'
-import Table from '../../components/Table'
+import Table from '@ui/Table'
 
 export default function Loading() {
   const fullNameCell = {

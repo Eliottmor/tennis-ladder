@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import ProfileHoverCard from '../../components/HoverCard/HoverCard'
-import Table from '../../components/Table'
+import ProfileHoverCard from '@ui/HoverCard'
+import Table from '@ui/Table'
 
 interface Player {
   id: string

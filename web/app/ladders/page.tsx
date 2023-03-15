@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { serverRequest } from '../../server-gql-request'
+import { serverRequest } from '@gql/server-gql-request'
 import LaddersPage from './laddersPage'
 
 const GetAllLadders = gql`
