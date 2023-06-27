@@ -48,17 +48,21 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  phoneNumber   String?
-  accounts      Account[]
-  sessions      Session[]
-  firstName     String?
-  lastName      String?
-  ladders       Ladder[]
-  ustaInfo      UstaInfo?
+  id               String    @id @default(cuid())
+  email            String?   @unique
+  emailVerified    DateTime?
+  image            String?
+  phoneNumber      String?
+  accounts         Account[]
+  sessions         Session[]
+  firstName        String?
+  lastName         String?
+  ladders          Ladder[]
+  ustaInfo         UstaInfo?
+  winnerOneMatches Match[]   @relation("winnerOne")
+  winnerTwoMatches Match[]   @relation("winnerTwo")
+  loserOneMatches  Match[]   @relation("loserOne")
+  loserTwoMatches  Match[]   @relation("loserTwo")
 }
 
 model VerificationToken {
@@ -75,4 +79,29 @@ model UstaInfo {
   userId     String @unique
   ntrpRating String
   user       User   @relation(fields: [userId], references: [id])
+}
+
+model Match {
+  id          Int      @id @default(autoincrement())
+  matchDate   DateTime @default(now())
+  winnerOneId String
+  winnerTwoId String?
+  loserOneId  String
+  loserTwoId  String?
+  winnerOne   User     @relation("winnerOne", fields: [winnerOneId], references: [id])
+  winnerTwo   User?    @relation("winnerTwo", fields: [winnerTwoId], references: [id])
+  loserOne    User     @relation("loserOne", fields: [loserOneId], references: [id])
+  loserTwo    User?    @relation("loserTwo", fields: [loserTwoId], references: [id])
+  sets        Set[]
+}
+
+model Set {
+  id                       Int   @id @default(autoincrement())
+  matchId                  Int
+  match                    Match @relation(fields: [matchId], references: [id])
+  setNumber                Int
+  matchWinnerScore         Int
+  matchLoserScore          Int
+  matchWinnerTiebreakScore Int?
+  matchLoserTiebreakScore  Int?
 }
