@@ -20,6 +20,7 @@ const typeDefs = gql`
     fallbackImgText: String
     ladders: [Ladder]
     ustaInfo: UstaInfo
+    matches: [Match]
   }
 
   """

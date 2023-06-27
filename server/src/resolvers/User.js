@@ -16,6 +16,25 @@ const ustaInfo = (parent) => {
   })
 }
 
+const matches = (parent) => {
+  return prisma.match.findMany({
+    where: {
+      OR: [
+        { winnerOneId: parent.id },
+        { winnerTwoId: parent.id },
+        { loserOneId: parent.id },
+        { loserTwoId: parent.id },
+      ]
+    },
+    include: {
+      sets: true,
+      winnerOne: true,
+      loserOne: true
+    }
+  },
+  )
+}
+
 
 module.exports = {
   id,
@@ -24,5 +43,6 @@ module.exports = {
   ladders,
   image,
   fallbackImgText,
-  ustaInfo
+  ustaInfo,
+  matches
 }
