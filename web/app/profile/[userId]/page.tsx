@@ -1,7 +1,8 @@
 import { gql } from 'graphql-request'
-import Avatar, { ImageSize } from '../../../components/Avatar'
-import { serverRequest } from '../../../server-gql-request'
+import Avatar, { ImageSize } from '@ui/Avatar'
+import { serverRequest } from '@gql/server-gql-request'
 import ProfileEditModalForm from './ProfileEditModalForm'
+import MatchHistory from './MatchHistory'
 
 const query = gql`
   query GetUserById($userId: String!) {
@@ -35,8 +36,8 @@ export default async function Profile({ params }) {
         <ProfileEditModalForm user={user}/>
       </div>
 
-      <div className='grid lg:grid-cols-3'>
-        <div className='pt-4'>
+      <section className='grid lg:grid-cols-3'>
+        <article className='pt-4'>
           <h2 className='pt-8 text-lg font-semibold'>
             Contact Information
           </h2>
@@ -44,9 +45,9 @@ export default async function Profile({ params }) {
           <div className='mb-4'>{user?.email}</div>
           <div className='font-medium text-text'>Phone number</div>
           <div className='mb-4'>{user?.phoneNumber || '—'}</div>
-        </div>
+        </article>
 
-        <div className='pt-4'>
+        <article className='pt-4'>
           <h2 className='pt-8 text-lg font-semibold'>
             USTA
           </h2>
@@ -54,17 +55,20 @@ export default async function Profile({ params }) {
           <div className='mb-4'>{ustaNumber || '—'}</div>
           <div className='font-medium text-text'>Rating </div>
           <div className='mb-4'>{ntrpRating || '—'}</div>
-        </div>
+        </article>
 
-        <div className='pt-4'>
+        <article className='pt-4'>
           <h2 className='pt-8 text-lg font-semibold'>
             Availability
           </h2>
           <div>
             I usually am available on weeknights and weekends.
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
+      <section>
+        <MatchHistory />
+      </section>
     </div>
   )
 }

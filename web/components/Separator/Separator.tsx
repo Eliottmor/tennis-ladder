@@ -25,7 +25,7 @@ const Separator = ({ children }: SeparatorProps) => {
       before:my-0
       before:mx-2
       before:bg-textLighter`
-      }
+    }
     >
       {children}
     </span>

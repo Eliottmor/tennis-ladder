@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { serverRequest } from '../../server-gql-request'
+import { serverRequest } from '@gql/server-gql-request'
 import PlayersPage from './playersPage'
 
 const GetAllPlayers = gql`

@@ -2,10 +2,10 @@
 import { gql } from 'graphql-request'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import Button, { ButtonType } from '../../../components/Button'
-import Modal from '../../../components/Modal'
-import TextFieldBlock from '../../../components/TextFieldBlock'
-import { clientRequest } from '../../../client-gql-request'
+import Button, { ButtonType } from '@ui/Button'
+import Modal from '@ui/Modal'
+import TextFieldBlock from '@ui/TextFieldBlock'
+import { clientRequest } from '@gql/client-gql-request'
 import { useRouter } from 'next/navigation'
 
 interface USTAInfo {

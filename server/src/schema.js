@@ -52,6 +52,21 @@ const typeDefs = gql`
     ladder: Ladder!
   }
 
+  type Set {
+    setNumber: Int!
+    matchWinnerScore: Int!
+    matchLoserScore: Int!
+    matchWinnerTiebreakScore: Int
+    matchLoserTiebreakScore: Int
+  }
+
+  type Match {
+    matchDate: Date!
+    winnerOne: User
+    loserOne: User
+    sets: [Set]
+  }
+
   type Query {
     players: [User!]!
     currentUser: User
@@ -69,11 +84,25 @@ const typeDefs = gql`
     ustaNumber: String
   }
 
+  input ReportMatchUsersByIdsInput {
+    winnerOneId: String!
+    loserOneId: String!
+  }
+
+  input ReportMatchSetsInput {
+    setNumber: Int!
+    matchWinnerScore: Int!
+    matchLoserScore: Int!
+    matchWinnerTiebreakScore: Int
+    matchLoserTiebreakScore: Int
+  }
+
   type Mutation {
     "Create a new ladder for players to join"  
     createLadder(name: String!, startDate: Date!, endDate: Date!): Ladder!
     addUserToLadder(userId: String!, ladderId: ID!): LadderUsers!
     updateUserById(input: UpdateUserByIdInput!): User
+    reportMatch(usersInput: ReportMatchUsersByIdsInput!, setsInput: [ReportMatchSetsInput]!): Match
   }
 `
 

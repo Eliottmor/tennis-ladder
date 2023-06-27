@@ -56,8 +56,28 @@ const updateUserById = async (_parent, { input }) => {
   return user
 }
 
+async function reportMatch(_parent, { usersInput, setsInput }) {
+  const { winnerOneId, loserOneId } = usersInput
+  const match = await prisma.match.create({
+    data: {
+      winnerOneId,
+      loserOneId,
+      sets: {
+        create: setsInput
+      }
+    },
+    include: {
+      sets: true,
+      winnerOne: true,
+      loserOne: true
+    }
+  })
+  return match
+}
+
 module.exports = {
   createLadder,
   addUserToLadder,
-  updateUserById
+  updateUserById,
+  reportMatch
 }
