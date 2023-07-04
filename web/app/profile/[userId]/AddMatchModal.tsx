@@ -1,22 +1,11 @@
 'use client'
-import { gql } from 'graphql-request'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import Button, { ButtonType } from '@ui/Button'
 import Modal from '@ui/Modal'
-import { clientRequest } from '@gql/client-gql-request'
-import { useRouter } from 'next/navigation'
 import { useCurrentUser } from '@utils/useCurrentUser'
 import Avatar from '@ui/Avatar'
 import SetInputField from '@ui/SetInputField'
-
-const updateUserById = gql`
-  mutation UpdateUserById($input: UpdateUserByIdInput!) {
-    updateUserById(input: $input) {
-      id
-    }
-  }
-`
 
 const AddMatchModal = () => {
   // const router = useRouter()
@@ -24,14 +13,14 @@ const AddMatchModal = () => {
   const { watch, handleSubmit, register } = formMethods
   const { currentUser } = useCurrentUser()
   const [isOpen, setIsOpen] = useState(false)
-  const addMatch = (data) => {
+  //eventually tie this add match up
+  const addMatch = () => {
     // clientRequest(updateUserById, { input: {...data, userId: user?.id }}).then(() => {
     //   setIsOpen(false)
     //   router.refresh()
     // })
   }
-  const playerOne = watch('playerOne')
-  const playerTwo = watch('playerTwo')
+  const [playerOne, playerTwo] = watch(['playerOne', 'playerTwo'])
 
   function getWinner(playerOne, playerTwo) {
     let playerOneSetsWon = 0
