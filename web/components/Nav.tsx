@@ -6,7 +6,7 @@ import { Session } from 'next-auth'
 import UserDropDown from './UserDropDown'
 
 interface NavProps {
-  session: Session
+  session: Session | null
 }
 
 const Nav = ({ session }: NavProps) => {

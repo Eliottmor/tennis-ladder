@@ -5,7 +5,6 @@ const { PrismaPlugin } = require('experimental-prisma-webpack-plugin')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: { appDir: true },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.plugins = [...config.plugins, new PrismaPlugin()]

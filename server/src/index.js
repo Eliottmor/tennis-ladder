@@ -3,7 +3,6 @@ const {
   ApolloServerPluginLandingPageGraphQLPlayground
 } = require('apollo-server-core')
 const { typeDefs } = require('./schema')
-const { getPlayerId } = require('./utils')
 const Query = require('./resolvers/Query')
 const User = require('./resolvers/User')
 const Mutation = require('./resolvers/Mutation')
@@ -28,7 +27,7 @@ const server = new ApolloServer({
   context: ({ req }) => {
     return {
       ...req,
-      playerId: req && req.headers.authorization ? getPlayerId(req) : null
+      userId: req && req.headers.userid
     }
   },
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()]
