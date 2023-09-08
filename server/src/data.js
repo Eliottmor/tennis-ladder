@@ -1,7 +1,5 @@
 const { PrismaClient } = require('../../prisma/src/generated/prisma')
 
-const prisma = new PrismaClient()
+let prisma = new PrismaClient()
 
-module.exports = {
-  prisma
-}
+export default prisma
