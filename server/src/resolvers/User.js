@@ -1,4 +1,4 @@
-const { prisma } = require('../data')
+const prisma = require('../data')
 
 const id = (parent) => parent.id
 const email = (parent) => parent.email

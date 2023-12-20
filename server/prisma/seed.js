@@ -1,9 +1,7 @@
-const { PrismaClient } = require('../../prisma/src/generated/prisma')
+const prisma = require('../src/data')
 const users = require('./usersSeed')
 const ladders = require('./laddersSeed')
 const usersInLadder = require('./usersInLadderSeed')
-
-const prisma = new PrismaClient()
 
 async function main() {
   await prisma.ladder.createMany({

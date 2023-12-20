@@ -1,4 +1,4 @@
-const { prisma } = require('../data')
+const prisma = require('../data')
 
 const players = (parent) => {
   return prisma.user.findMany({})

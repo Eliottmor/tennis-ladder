@@ -27,7 +27,7 @@ const Table = ({
 
   return (
     <>
-      {tableRows.length > 0 && (
+      {tableRows && tableRows.length > 0 && (
         <table className='table-fixed' width='100%'>
           <thead>
             <tr className='border-gray-100 border-b'>
@@ -55,7 +55,7 @@ const Table = ({
           </tbody>
         </table>
       )}
-      {tableRows.length === 0 && zeroStateContent}
+      {tableRows?.length === 0 && zeroStateContent}
     </>
   )
 }
