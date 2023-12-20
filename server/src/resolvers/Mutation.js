@@ -1,4 +1,4 @@
-const { prisma } = require('../data')
+const prisma = require('../data')
 
 const createLadder = async (_parent, { name, startDate, endDate }) => {
   const foundLadder = await prisma.ladder.findUnique({
