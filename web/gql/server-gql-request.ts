@@ -4,7 +4,8 @@ import { GraphQLClient, request } from 'graphql-request'
 
 export async function serverRequest(query, variables?) {
   const session = await getServerSession(authOptions)
-  return request(process.env.GRAPHQL_API_URL, query, variables, { userId: session?.user?.id })
+  const requestHeaders = { userId: session?.user?.id || 'no id' }
+  return request({ url: process.env.NEXT_PUBLIC_GRAPHQL_API_URL || '', document: query, variables, requestHeaders })
 }
 
-export const gqlClient = new GraphQLClient(process.env.GRAPHQL_API_URL)
+export const gqlClient = new GraphQLClient(process.env.GRAPHQL_API_URL || '')

@@ -4,5 +4,6 @@ import { getSession } from 'next-auth/react'
 
 export async function clientRequest(query, variables?) {
   const session = await getSession()
-  return request(process.env.NEXT_PUBLIC_GRAPHQL_API_URL, query, variables, { userId: session?.user?.id })
+  const requestHeaders = { userId: session?.user?.id || 'no id' }
+  return request({ url: process.env.NEXT_PUBLIC_GRAPHQL_API_URL || '', document: query, variables, requestHeaders })
 }
