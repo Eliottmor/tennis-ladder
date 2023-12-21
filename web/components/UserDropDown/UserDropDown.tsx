@@ -23,22 +23,22 @@ const UserDropDown = ({ user, className }: UserDropDownProps) => {
           Profile
         </DropdownMenu.DropdownMenuItem>
       </Link>
-      <DropdownMenu.DropdownMenuItem
-        key='players'
-        className='items-center py-1 px-2 pl-6 relative data-[highlighted]:bg-backgroundContainerAlt outline-0 rounded'
-      >
-        <Link className='p-2 rounded hover:bg-backgroundContainerAlt transition duration-300' href='/players'>
+      <Link href='/players'>
+        <DropdownMenu.DropdownMenuItem
+          key='players'
+          className='items-center py-1 px-2 pl-6 relative data-[highlighted]:bg-backgroundContainerAlt outline-0 rounded'
+        >
           Players
-        </Link>
-      </DropdownMenu.DropdownMenuItem>
-      <DropdownMenu.DropdownMenuItem
-        key='players'
-        className='items-center py-1 px-2 pl-6 relative data-[highlighted]:bg-backgroundContainerAlt outline-0 rounded'
-      >
-        <Link className='p-2 rounded hover:bg-backgroundContainerAlt transition duration-300' href='/ladders'>
+        </DropdownMenu.DropdownMenuItem>
+      </Link>
+      <Link href='/ladders'>
+        <DropdownMenu.DropdownMenuItem
+          key='players'
+          className='items-center py-1 px-2 pl-6 relative data-[highlighted]:bg-backgroundContainerAlt outline-0 rounded'
+        >
           Ladders
-        </Link>
-      </DropdownMenu.DropdownMenuItem>
+        </DropdownMenu.DropdownMenuItem>
+      </Link>
       <DropdownMenu.DropdownMenuItem
         key={'sign-out'}
         className='items-center py-1 px-2 pl-6 relative cursor-pointer data-[highlighted]:bg-backgroundContainerAlt outline-0 rounded'
