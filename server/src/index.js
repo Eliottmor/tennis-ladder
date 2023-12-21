@@ -1,4 +1,8 @@
-const { ApolloServer } = require('apollo-server')
+const { ApolloServer } = require('apollo-server-express')
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
+const express = require('express')
+const http = require('http')
+const cors = require('cors')
 const {
   ApolloServerPluginLandingPageGraphQLPlayground
 } = require('apollo-server-core')
@@ -10,8 +14,6 @@ const Ladder = require('./resolvers/Ladder')
 const Date = require('./resolvers/custom-scalars/date')
 const UstaInfo = require('./resolvers/UstaInfo')
 
-const port = process.env.PORT || 4000
-
 const resolvers = {
   Query,
   Mutation,
@@ -21,18 +23,29 @@ const resolvers = {
   UstaInfo
 }
 
-const server = new ApolloServer({
-  resolvers,
-  typeDefs,
-  context: ({ req }) => {
-    return {
-      ...req,
-      userId: req && req.headers.userid
-    }
-  },
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()]
-})
+const app = express()
+app.use(cors())
+app.use(express.json())
 
-server.listen({ port }, () =>
-  console.log(`Server runs at: http://localhost:${port}`)
-)
+const httpServer = http.createServer(app)
+
+const startApolloServer = async (app, httpServer) => {
+  const server = new ApolloServer({
+    resolvers,
+    typeDefs,
+    context: ({ req }) => {
+      return {
+        ...req,
+        userId: req && req.headers.userid
+      }
+    },
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground(), ApolloServerPluginDrainHttpServer({ httpServer })]
+  })
+
+  await server.start()
+  server.applyMiddleware({ app })
+}
+
+startApolloServer(app, httpServer)
+
+module.exports = httpServer
