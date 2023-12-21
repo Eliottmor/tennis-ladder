@@ -29,11 +29,11 @@ export default async function Profile({ params }) {
   const { ustaNumber, ntrpRating } = user?.ustaInfo || {}
 
   return (
-    <div className='p-16'>
+    <div className='p-8 md:p-16'>
+      <span className='float-right'><ProfileEditModalForm user={user}/></span>
       <Avatar imgAlt='profile picture' imgSize={ImageSize.Xl} fallbackText={user?.fallbackImgText} imgSrc={user?.image} />
-      <div className='pl-2 text-5xl align-middle inline-flex'>
+      <div className='pt-4 md:pt-0 md:pl-2 text-xl md:text-5xl align-middle md:inline-flex'>
         {user?.fullName}
-        <ProfileEditModalForm user={user}/>
       </div>
 
       <section className='grid lg:grid-cols-3'>

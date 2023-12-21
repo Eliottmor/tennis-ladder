@@ -22,15 +22,10 @@ export default function Loading() {
     renderCell: () => <div className='rounded-md animate-pulse bg-gray-200 w-96 h-[21px]' />
   }
 
-  const ladderCell = {
-    headerLabel: 'Ladders',
-    renderCell: () => <div className='rounded-md animate-pulse bg-gray-200 w-10 h-[21px]' />
-  }
-
-  const cells = [fullNameCell, emailCell, phoneNumberCell, ladderCell]
+  const cells = [fullNameCell, emailCell, phoneNumberCell]
 
   return (
-    <div className='p-16'>
+    <div className='p-16 hidden md:block'>
       <Table cells={cells} skeletonRows={5} />
     </div>
   )

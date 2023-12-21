@@ -1,5 +1,6 @@
 'use client'
 import Table from '@ui/Table'
+import { format } from 'date-fns'
 
 interface Ladder {
   id: string
@@ -19,18 +20,18 @@ const LaddersPage = ({ ladders }: LaddersPageProps) => {
 
   const startDateCell = {
     headerLabel: 'Start date',
-    renderCell: ({ startDate }) => <div>{startDate}</div>
+    renderCell: ({ startDate }) => <div>{format(startDate, 'MM/dd/yyyy')}</div>
   }
 
   const endDateCell = {
     headerLabel: 'End date',
-    renderCell: ({ endDate }) => <div>{endDate}</div>
+    renderCell: ({ endDate }) => <div>{format(endDate, 'MM/dd/yyyy')}</div>
   }
 
   const cells = [nameCell, startDateCell, endDateCell]
 
   return (
-    <div className='p-16'>
+    <div className='p-4 md:p-16'>
       <Table cells={cells} rows={ladders} />
     </div>
   )
