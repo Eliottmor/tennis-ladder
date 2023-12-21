@@ -37,7 +37,7 @@ const Nav = ({ session }: NavProps) => {
         )}
 
         {isLoggedIn && (
-          <UserDropDown user={session.user} className='mt-3 absolute right-6'/>
+          <UserDropDown user={session.user} className='mt-3 absolute right-6 text-xs md:text-sm w-40 md:w-fit'/>
         )}
       </NavigationMenu.List>
     </NavigationMenu.Root>
