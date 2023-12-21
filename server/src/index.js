@@ -6,13 +6,13 @@ const cors = require('cors')
 const {
   ApolloServerPluginLandingPageGraphQLPlayground
 } = require('apollo-server-core')
-const { typeDefs } = require('./src/schema')
-const Query = require('./src/resolvers/Query')
-const User = require('./src/resolvers/User')
-const Mutation = require('./src/resolvers/Mutation')
-const Ladder = require('./src/resolvers/Ladder')
-const Date = require('./src/resolvers/custom-scalars/date')
-const UstaInfo = require('./src/resolvers/UstaInfo')
+const { typeDefs } = require('./schema')
+const Query = require('./resolvers/Query')
+const User = require('./resolvers/User')
+const Mutation = require('./resolvers/Mutation')
+const Ladder = require('./resolvers/Ladder')
+const Date = require('./resolvers/custom-scalars/date')
+const UstaInfo = require('./resolvers/UstaInfo')
 
 const resolvers = {
   Query,

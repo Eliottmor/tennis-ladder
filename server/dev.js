@@ -1,4 +1,4 @@
-const app = require('./index')
+const app = require('./src/index')
 const consola = require('consola')
 const dotenv = require('dotenv')
 
