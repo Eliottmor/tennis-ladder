@@ -25,7 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     <button
       type={type}
       ref={forwardedRef}
-      className={`border border-transparent rounded-lg cursor-pointer flex justify-center items-center px-6 py-2 relative text-center h-8 min-w-[2rem] ${className} ${buttonTextSize} ${buttonTypeClass}`}
+      className={`border border-transparent rounded-lg cursor-pointer flex justify-center items-center px-3 md:px-6 py-2 relative text-center h-8 min-w-[2rem] ${className} ${buttonTextSize} ${buttonTypeClass}`}
       {...rest}
     >
       {label}

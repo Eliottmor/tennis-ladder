@@ -4,6 +4,7 @@ import Avatar, { ImageSize} from '../Avatar'
 
 interface ProfileHoverCardProps {
   imgSrc?: string
+  imgSize?: ImageSize
   fallbackText: string
   imgAlt: string
   fullName: string
@@ -12,6 +13,7 @@ interface ProfileHoverCardProps {
 
 const ProfileHoverCard = ({
   imgSrc,
+  imgSize,
   fallbackText,
   imgAlt,
   fullName,
@@ -21,7 +23,7 @@ const ProfileHoverCard = ({
     <HoverCard.Root closeDelay={100}>
       <HoverCard.Trigger asChild>
         <span>
-          <Avatar imgSrc={imgSrc} fallbackText={fallbackText} imgAlt={imgAlt} />
+          <Avatar imgSrc={imgSrc} imgSize={imgSize} fallbackText={fallbackText} imgAlt={imgAlt} />
         </span>
       </HoverCard.Trigger>
       <HoverCard.Portal>

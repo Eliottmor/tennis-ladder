@@ -27,7 +27,7 @@ const Modal = ({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className='bg-black bg-opacity-40 data-[state=open]:animate-overlayShow fixed inset-0' />
-        <Dialog.Content className='data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none'>
+        <Dialog.Content className='data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] overflow-auto max-h-[85vh] w-[90vw] max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none'>
           <Dialog.Title className='font-medium m-0 text-xl'>{title}</Dialog.Title>
           {subtitle && <Dialog.Description className='mt-2 mb-5 leading-normal text-textLight'>{subtitle}</Dialog.Description>}
           {children}
